@@ -14,6 +14,9 @@ var myLib = (function (exports)) {
   var MyClass = function () ...
   exports.MyClass = MyClass;
 }(someOtherWindowObject));
+
+// Accounts for any globals after the export
+}(someOtherWindowObject, window.jQuery));
 ```
 
 ## Install
@@ -30,7 +33,8 @@ import exportsExtend from 'rollup-plugin-exports-extend';
 
 rollup.rollup({
   plugins: [
-    exportsExtend('someOtherWindowObject') // can also do something like 'this.lib.obj' if it will already exist when your lib is loaded
+    exportsExtend('someOtherWindowObject')
+    // can also do something like 'this.lib.obj' if it will already exist when your lib is loaded
   ]
 });
 ```
