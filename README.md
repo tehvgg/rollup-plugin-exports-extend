@@ -1,56 +1,39 @@
-# rollup-plugin-force-binding
+# rollup-plugin-exports-extend
 
-Force all import bindings for a module to come from one absolute source.
-Useful for bundles with [multiple entry points](https://github.com/rollup/rollup-plugin-multi-entry) that have shared dependencies at different absolute paths.
+Remap the `exports` object in an IIFE bundle to extend and existing object.
 
 ```js
-// entry A
-import SomeClass from 'some-dependency/src/SomeClass';
-// resolved path: ~\path\to\A\node_modules\some-dependency\src\SomeClass
+// ES5 IIFE bundle w/ Rollup
+var myLib = (function (exports)) {
+	var MyClass = function () ...
+	exports.MyClass = MyClass;
+}({})); // <--- object we want to remap
 
-// entry B
-import SomeClass from 'some-dependency/src/SomeClass';
-// resolved path: ~\path\to\B\node_modules\some-dependency\src\SomeClass
-
-// resulting in bundled duplicates
-var SomeClass = (function () {})();
-var EntryA = (function (_SomeClass) {})(SomeClass);
-
-var SomeClass$2 = (function () {})();
-var EntryB = (function (_SomeClass) {})(SomeClass$2);
+// Now after setting an object to extend
+var myLib = (function (exports)) {
+	var MyClass = function () ...
+	exports.MyClass = MyClass;
+}(someOtherWindowObject));
 ```
 
 ## Install
 
 ```
-$ npm i rollup-plugin-force-binding [--save-dev]
+$ npm i rollup-plugin-exports-extend [--save-dev]
 ```
 
 ## Usage
 
-If used in junction with [node-resolve](https://github.com/rollup/rollup-plugin-node-resolve), place force-binding BEFORE in the plugin array.
-
 ```js
-import forceBinding from 'rollup-plugin-force-binding';
+import rollup from 'rollup';
+import exportsExtend from 'rollup-plugin-exports-extend';
 
 rollup.rollup({
   plugins: [
-    forceBinding([
-      // regular module
-      'some-dependency',
-      // pathed module (some-dependency/src/Asset.js)
-      'Asset' // 'Asset.js' also valid
-    ])
+    exportsExtend('someOtherWindowObject') // can also do something like 'this.lib.obj' if it will already exist when your lib is loaded
   ]
 });
 ```
-
-## Caveat
-Rollup's plugin model does not expose the import names, only the paths.
-```js
-import { SomeClass, AnotherClass } from 'some-dependency';
-```
-As such, the above code cannot be deduped. This is why you must path to the source file. I have submitted a [feature request](https://github.com/rollup/rollup/issues/1301) to expose import names.
 
 ## License
 
