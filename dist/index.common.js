@@ -1,8 +1,8 @@
 'use strict';
 
 function exportsExtend(renamedObject) {
-  var exportRegex = /}\({}([,\s\.\w]*)\)\);$/;
-  var exportReplace = '}' + renamedObject + '$1));';
+  var exportRegex = /}\({}(.*)\)\);$/;
+  var exportReplace = '}(' + renamedObject + '$1));';
   return {
     name: 'exports-extend',
     transformBundle: function transformBundle(source, _ref) {
