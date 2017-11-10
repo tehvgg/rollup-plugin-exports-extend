@@ -5,14 +5,14 @@ Remap the `exports` object in an IIFE bundle to extend and existing object.
 ```js
 // ES5 IIFE bundle w/ Rollup
 var myLib = (function (exports)) {
-	var MyClass = function () ...
-	exports.MyClass = MyClass;
+  var MyClass = function () ...
+  exports.MyClass = MyClass;
 }({})); // <--- object we want to remap
 
 // Now after setting an object to extend
 var myLib = (function (exports)) {
-	var MyClass = function () ...
-	exports.MyClass = MyClass;
+  var MyClass = function () ...
+  exports.MyClass = MyClass;
 }(someOtherWindowObject));
 ```
 
