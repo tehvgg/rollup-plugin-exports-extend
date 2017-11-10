@@ -1,0 +1,32 @@
+{
+  "name": "rollup-plugin-exports-extend",
+  "version": "1.0.0",
+  "description": "Point the exports reference to something other than a new object, to allow for extending existing globals.",
+  "main": "dist/index.common.js",
+  "jsnext:main": "src/index.js",
+  "keywords": [
+    "rollupjs",
+    "rollup-plugin",
+    "export",
+    "rename",
+    "global",
+    "extend"
+  ],
+  "author": "Patrick McGuckin",
+  "license": "MIT",
+  "url": "https://npmjs.com/package/rollup-plugin-export-extend",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tehvgg/rollup-plugin-export-extend.git"
+  },
+  "bugs": "https://github.com/tehvgg/rollup-plugin-export-extend/issues",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "gulpjs/gulp#4.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-stream": "^1.19.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
