@@ -1,6 +1,6 @@
 export default function exportsExtend (renamedObject) {
   const exportRegex = /}\({}(.*)(\))?\);$/
-  const exportReplace = `}(${renamedObject}$1$2));`;
+  const exportReplace = `}(${renamedObject}$1$2);`;
   return {
     name: 'exports-extend',
     transformBundle (source, { format }) {
