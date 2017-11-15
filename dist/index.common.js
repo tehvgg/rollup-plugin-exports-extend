@@ -11,7 +11,10 @@ function exportsExtend(renamedObject) {
       if (format !== 'iife') {
         throw new Error('This plugin only works for IIFE bundles. Format given: ' + format);
       }
-      return source.replace(exportRegex, exportReplace);
+      return {
+        code: source.replace(exportRegex, exportReplace),
+        map: { mappings: '' }
+      };
     }
   };
 }
