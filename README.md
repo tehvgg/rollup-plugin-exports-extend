@@ -1,6 +1,6 @@
 # rollup-plugin-exports-extend
 
-Remap the `exports` object in an IIFE bundle to extend and existing object.
+Remap the `exports` object in an IIFE bundle to extend an existing object.
 
 ```js
 // ES5 IIFE bundle w/ Rollup
