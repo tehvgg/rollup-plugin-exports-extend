@@ -1,3 +1,6 @@
+#### DEPRECATED
+[Rollup now supports an `extend` option](https://rollupjs.org/guide/en#extend)
+
 # rollup-plugin-exports-extend
 
 Remap the `exports` object in an IIFE bundle to extend an existing object.
